@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- IMPORTANTE: estas 3 lineas son las "coordenadas" de la libreria.
+       El proyecto Android la pedira EXACTAMENTE asi:
+         implementation("umg.edu.gt.progra2:gastos-core:1.0.0")
+                         ^groupId           ^artifactId ^version -->
+  <groupId>umg.edu.gt.progra2</groupId>
+  <artifactId>gastos-core</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <name>Clase 12 - Gastos Core</name>
+  <description>Modelo del dominio de la App de Gastos (Categoria, Gasto, GastoRepository, ControlGastos) en Kotlin puro. Se instala con mvn install y lo consume el proyecto Android como una dependencia mas.</description>
+
+  <properties>
+    <!-- Misma version de Kotlin que la Clase 11. -->
+    <kotlin.version>2.1.20</kotlin.version>
+    <!-- Cuidado: Android lee bytecode de Java 11 sin problemas. Si se sube a 17 o 21,
+         el proyecto Android tambien tendria que compilar con ese JDK. -->
+    <java.version>11</java.version>
+    <kotlin.compiler.jvmTarget>${java.version}</kotlin.compiler.jvmTarget>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Menu de consola para probar la libreria SIN Android: mvn compile exec:java -->
+    <exec.mainClass>edu.umg.programacion2.gastos.consola.MainKt</exec.mainClass>
+  </properties>
+
+  <dependencies>
+    <!-- IMPORTANTE: la UNICA dependencia es la libreria estandar de Kotlin.
+         No hay nada de Android aqui: por eso el mismo codigo sirve en consola y en el telefono. -->
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>${kotlin.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <!-- Solo hay codigo Kotlin, asi que Maven busca los fuentes en src/main/kotlin. -->
+    <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+
+    <plugins>
+      <!-- Compila los archivos .kt a .class (igual que en la Clase 11). -->
+      <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <version>${kotlin.version}</version>
+        <executions>
+          <execution>
+            <id>compile</id>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Permite ejecutar el menu de consola con: mvn compile exec:java -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.2.0</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>

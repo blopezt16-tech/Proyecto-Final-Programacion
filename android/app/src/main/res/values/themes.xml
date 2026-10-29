@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme compatible with AppCompatActivity (Paso 2 y Problemas comunes de la guía) -->
+    <style name="Base.Theme.ControlGastos" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/umg_blue</item>
+        <item name="colorPrimaryVariant">@color/umg_blue_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/umg_accent</item>
+        <item name="android:statusBarColor">@color/umg_blue_dark</item>
+    </style>
+
+    <style name="Theme.ControlGastos" parent="Base.Theme.ControlGastos" />
+</resources>
+
